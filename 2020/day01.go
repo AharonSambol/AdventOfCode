@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+func main() {}
 func getInput(s string) string {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print(s)
@@ -17,7 +18,7 @@ func getInput(s string) string {
 	return input
 }
 
-func main() {
+func day1() {
 	input := `1511
 	1344
 	1925
