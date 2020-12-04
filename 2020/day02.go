@@ -9,7 +9,8 @@ import (
 	"strings"
 )
 
-func readFromFile(fileName string) []string {
+func main() {}
+func ReadFromFile(fileName string) []string {
 	file, err := os.Open(fileName)
 
 	if err != nil {
@@ -27,7 +28,7 @@ func readFromFile(fileName string) []string {
 }
 
 func part1() {
-	input := readFromFile("day02.txt")
+	input := ReadFromFile("day02.txt")
 	count := 0
 	r := regexp.MustCompile(":?[-\\s]")
 	for _, line := range input {
@@ -48,7 +49,7 @@ func part1() {
 	print(count)
 }
 func part2() {
-	input := readFromFile("day02.txt")
+	input := ReadFromFile("day02.txt")
 	count := 0
 	r := regexp.MustCompile(":?[-\\s]")
 	for _, line := range input {

@@ -3,28 +3,11 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"strconv"
 	"strings"
 )
 
-func readFromFile(fileName string) []string {
-	file, err := os.Open(fileName)
-
-	if err != nil {
-		log.Fatalf("failed to open")
-	}
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
-	var text []string
-	for scanner.Scan() {
-
-		text = append(text, scanner.Text())
-	}
-	file.Close()
-	return text
-}
 func getInput(s string) string {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print(s)

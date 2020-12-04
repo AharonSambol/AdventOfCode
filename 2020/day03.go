@@ -1,31 +1,8 @@
 package main
 
-import (
-	"bufio"
-	"log"
-	"os"
-)
-
-func readFromFile(fileName string) []string {
-	file, err := os.Open(fileName)
-
-	if err != nil {
-		log.Fatalf("failed to open")
-	}
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
-	var text []string
-	for scanner.Scan() {
-
-		text = append(text, scanner.Text())
-	}
-	file.Close()
-	return text
-}
-
 func day3part1(rowSkip int, colSkip int) int {
 	// row and col in question one are 1 and 3
-	input := readFromFile("day03.txt")
+	input := ReadFromFile("day03.txt")
 	count := 0
 	pos := 0
 	for i, row := range input {
