@@ -45,5 +45,3 @@ func day3part1(rowSkip int, colSkip int) int {
 func day3part2() {
 	print(day3part1(1, 1) * day3part1(1, 3) * day3part1(1, 5) * day3part1(1, 7) * day3part1(2, 1))
 }
-
-//8034812640
