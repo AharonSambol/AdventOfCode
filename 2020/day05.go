@@ -54,6 +54,8 @@ func day5pt1() {
 	//part 1
 	println(seats[len(seats)-1])
 	//part 2
+	//I could optimize this by doing something similar to binary search
+	// but I decided that simple is better in this case
 	for i, seat := range seats {
 		if seats[i+1] != seat+1 {
 			println(seat + 1)
