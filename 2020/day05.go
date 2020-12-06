@@ -1,31 +1,9 @@
 package main
 
 import (
-	"bufio"
-	"log"
-	"os"
 	"sort"
 )
 
-func main() {
-	day5pt1()
-}
-func ReadFromFile(fileName string) []string {
-	file, err := os.Open(fileName)
-
-	if err != nil {
-		log.Fatalf("failed to open")
-	}
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
-	var text []string
-	for scanner.Scan() {
-
-		text = append(text, scanner.Text())
-	}
-	file.Close()
-	return text
-}
 func day5pt1() {
 	input := ReadFromFile("day05.txt")
 	seats := []int{}
