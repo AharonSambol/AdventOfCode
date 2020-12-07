@@ -6,8 +6,10 @@ import (
 	"os"
 )
 
+var path string
+
 func ReadFromFile(fileName string) []string {
-	file, err := os.Open(fileName)
+	file, err := os.Open(path + fileName)
 
 	if err != nil {
 		log.Fatalf("failed to open")
@@ -23,5 +25,6 @@ func ReadFromFile(fileName string) []string {
 }
 
 func main() {
-	day6pt1()
+	path = "D:\\Aharon\\git\\AdventOfCode\\2020\\InputTxt\\"
+	day5pt1()
 }
