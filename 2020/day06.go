@@ -6,9 +6,6 @@ import (
 	"os"
 )
 
-func main() {
-	day6pt2()
-}
 func ReadFromFile(fileName string) []string {
 	file, err := os.Open(fileName)
 
@@ -24,7 +21,6 @@ func ReadFromFile(fileName string) []string {
 	file.Close()
 	return text
 }
-
 func day6pt1() {
 	input := ReadFromFile("day06.txt")
 	count := 0
@@ -43,6 +39,7 @@ func day6pt1() {
 	}
 	print(count)
 }
+
 func day6pt2() {
 	input := ReadFromFile("day06.txt")
 	count := 0
