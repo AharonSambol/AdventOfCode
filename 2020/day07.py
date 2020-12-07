@@ -12,11 +12,12 @@ def day7(part_one):
     hm = {}
     for line in input:
         thisBag = line.split("s contain")[0]
-        if line.__contains__("no other bags"):
+        if "no other bags" in line:
             hm[thisBag] = []
             continue
         allBags = []
         for i, bag in enumerate(re.split("(.*contain|, |\\.)", line)):
+
             if not re.match(".*(, |\\.|contain|\n|^$).*", bag):
                 amount = int(re.findall("\\d", bag)[0])
                 for _ in range(amount):
@@ -30,7 +31,7 @@ def day7(part_one):
 
 def find_all(d, color, count):
     for key in d:
-        if d[key].__contains__(color):
+        if color in d[key]:
             d[key] = []
             count = find_all(d, key, count) + 1
     return count
