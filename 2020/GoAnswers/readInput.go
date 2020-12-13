@@ -44,5 +44,5 @@ func ReadFromFile(fileName string) []string {
 
 func main() {
 	path = "D:\\Aharon\\git\\AdventOfCode\\2020\\InputTxt\\"
-	day11pt1()
+	day13pt1()
 }
