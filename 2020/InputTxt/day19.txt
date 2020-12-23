@@ -52,7 +52,6 @@
 102: 46 118 | 132 2
 5: 39 118 | 51 2
 14: 57 2 | 96 118
-8: 42
 25: 118 59 | 2 67
 3: 19 118 | 52 2
 59: 2 74 | 118 83
@@ -62,7 +61,6 @@
 116: 118 38 | 2 108
 17: 2 122 | 118 29
 124: 41 118 | 40 2
-11: 42 31
 38: 43 43
 44: 118 123 | 2 114
 23: 12 2
@@ -132,6 +130,8 @@
 72: 64 2 | 115 118
 48: 2 46 | 118 10
 97: 7 118 | 133 2
+11: 42 31 | 42 42 31 31 | 42 42 42 31 31 31 | 42 42 42 42 31 31 31 31
+8: ( 42 )*
 
 aaaaaababababbbbbababaab
 aaababbabbbbbbabaaaabbaaabababaabababaaa
@@ -615,3 +615,5 @@ ababbaaabbaaaaabaaaababa
 bbbbabbaabaabbbabbabbbbbbbbbabbbaabbbababaaaabbaaaaaaabbbbaaaaaa
 bbabaabbabababbbaaabbbaabaaabbaaabababbbabbbaaaaaaaabbaa
 aaaaaaaaaaabbbbaaaabbabbaaaaabba
+
+
