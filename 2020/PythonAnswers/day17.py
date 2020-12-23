@@ -20,6 +20,7 @@ class cube:
     def make_neighbours(self,all_cubes):
         self.neighbours = make_neighbours(all_cubes, self.posX, self.posY, self.posZ, self.posW)
 
+
 def day17():
     all_cubes = {}
     with open("day17.txt") as in_file:
@@ -60,6 +61,7 @@ def day17():
             count+=1
     print(count)
         
+
 def add_cube(all_cubes,x,y,z,w):
     pos = str(x)+","+str(y)+","+str(z)+","+str(w)
     if pos not in all_cubes:
@@ -77,6 +79,7 @@ def make_neighbours(all_cubes, posX, posY, posZ, posW):
                         neighbours.append(add_cube(all_cubes,posX+x,posY+y,posZ+z,posW+w))
     return neighbours
 		
+
 def get_all_neighbours(all_cubes, posX, posY, posZ, posW):
     neighbours = []
     for x in range(-1,2):
