@@ -82,14 +82,9 @@ def recurse(plyr1, plyr2, history, game):
 
     if game == 1:
         count = 0
-        if len(plyr1) == 0:
-            for i, num in enumerate(plyr2[::-1]):
-                count += (i+1) * num
-            return count
-        for i, num in enumerate(plyr1[::-1]):
+        for i, num in enumerate(plyr2[::-1] if len(plyr1) == 0 else plyr1[::-1]):
             count += (i+1) * num
         return count
-
     if len(plyr1) == 0:
         return 2
     return 1
