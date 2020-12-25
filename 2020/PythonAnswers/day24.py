@@ -1,6 +1,15 @@
 import copy
 import re
 
+# visualizing array like this:
+#         * * 
+# . .     * i *
+# . i . # # * *
+#   . . # i # 0 0
+#     ^ ^ # # 0 i 0
+#     ^ i ^ - - 0 0
+#       ^ ^ - i -
+#             - -
 
 def read_input(file_name):
     with open(file_name) as in_file:
