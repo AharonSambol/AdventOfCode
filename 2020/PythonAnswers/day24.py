@@ -1,15 +1,6 @@
 import copy
 import re
 
-# visualizing array like this:
-#         * * 
-# . .     * i *
-# . i . # # * *
-#   . . # i # 0 0
-#     ^ ^ # # 0 i 0
-#     ^ i ^ - - 0 0
-#       ^ ^ - i -
-#             - -
 
 def read_input(file_name):
     with open(file_name) as in_file:
@@ -18,85 +9,66 @@ def read_input(file_name):
 
 
 def day24pt1():
+    all_tiles = {}
     input = [re.findall("(e|se|sw|nw|w|ne)", line) for line in read_input("day24.txt")]
-    arr = [[False] * 1000 for _ in range(1000)]
-
     for line in input:
-        posX, posY = 500, 500
+        row, col = 100, 100
         for dir in line:
             if dir == "e":
-                posY += 1
-                posX += 3
+                col += 1
             elif dir == "se":
-                posY += 3
-                posX += 2
+                row += 1
             elif dir == "sw":
-                posY += 2
-                posX -= 1
+                col -= 1
+                row += 1
             elif dir == "nw":
-                posY -= 3
-                posX -= 2
+                row -= 1
             elif dir == "w":
-                posY -= 1
-                posX -= 3
+                col -= 1
             elif dir == "ne":
-                posY -= 2
-                posX += 1
-        arr[posX][posY] = not arr[posX][posY]
+                row -= 1
+                col += 1
+        pos = str(row)+","+str(col)
+        if pos in all_tiles:
+            all_tiles.pop(pos)
+        else:
+            all_tiles[pos] = None
 
-    print(str(arr).count("True"))
-    return arr
+    print("part one:", len(all_tiles))
+    return all_tiles
 
 
 def day24pt2():
-    arr = day24pt1()
-    new_arr = [[False] * 1000 for _ in range(1000)]
+    get_around = [(-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1, -1), (1, 0)]
+    on_tiles = day24pt1()
     for _ in range(100):
-        area_to_check = get_area(arr)
-        for r in range(area_to_check["sr"], area_to_check["br"]):
-            for c in range(area_to_check["sc"], area_to_check["bc"]):
-                nbrs = get_neighbors(arr, r, c)
-                if arr[r][c]:
-                    if nbrs == 0 or nbrs > 2:
-                        pass
-                    else:
-                        new_arr[r][c] = True
-                else:
-                    if nbrs == 2:
-                        new_arr[r][c] = True
-        arr = copy.deepcopy(new_arr)
-        new_arr = [[False] * 1000 for _ in range(1000)]
+        all_tiles = {}
+        for tile in on_tiles.keys():
+            for side in get_around:
+                r, c = side
+                row, col = tile.split(",")
+                all_tiles[str(int(row)+r) + "," + str(int(col)+c)] = None
 
-    print(str(arr).count("True"))
+        new_on_tiles = {}
+        for tile in all_tiles.keys():
+            r, c = tile.split(",")
+            nbrs = get_neighbors(on_tiles, int(r), int(c))
+            if tile in on_tiles:
+                if nbrs != 0 and nbrs <= 2:
+                    new_on_tiles[tile] = None
+            else:
+                if nbrs == 2:
+                    new_on_tiles[tile] = None
+        on_tiles = copy.deepcopy(new_on_tiles)
 
-
-def get_neighbors(arr, posX, posY):
-    ans = [arr[posX + 3][posY + 1], arr[posX + 2][posY + 3], arr[posX - 1][posY + 2], arr[posX - 2][posY - 3],
-           arr[posX - 3][posY - 1], arr[posX + 1][posY - 2]]
-    return str(ans).count("True")
+    print("part two:", len(on_tiles))
 
 
-def get_area(arr):    # I shouldn't do each tile only the valid ones (like pos 500,501 isn't an actual tile)
-    smallest_row = len(arr)
-    smallest_col = len(arr)
-    biggest_row = 0
-    biggest_col = 0
-
-    for r in range(len(arr)):
-        for c in range(len(arr[0])):
-            if arr[r][c]:
-                if r < smallest_row:
-                    smallest_row = r
-                if c < smallest_col:
-                    smallest_col = c
-                if r > biggest_row:
-                    biggest_row = r
-                if c > biggest_col:
-                    biggest_col = c
-    return {"sr": smallest_row-3,
-            "sc": smallest_col-3,
-            "br": biggest_row+3,
-            "bc": biggest_col+3}
+def get_neighbors(tiles, r, c):
+    ans = [tiles.get(str(r-1)+","+str(c), 1), tiles.get(str(r-1)+","+str(c+1), 1),
+           tiles.get(str(r)+","+str(c-1), 1), tiles.get(str(r)+","+str(c+1), 1),
+           tiles.get(str(r+1)+","+str(c), 1), tiles.get(str(r+1)+","+str(c-1), 1)]
+    return len([x for x in ans if x is None])
 
 
 day24pt2()
