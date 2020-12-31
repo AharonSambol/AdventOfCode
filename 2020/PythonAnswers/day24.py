@@ -61,13 +61,12 @@ def day24pt2():
                     new_on_tiles[tile] = None
         on_tiles = copy.deepcopy(new_on_tiles)
 
-    print("part two:", len(on_tiles))
+    print(len(on_tiles))
 
 
 def get_neighbors(tiles, r, c):
-    ans = [tiles.get(str(r-1)+","+str(c), 1), tiles.get(str(r-1)+","+str(c+1), 1),
-           tiles.get(str(r)+","+str(c-1), 1), tiles.get(str(r)+","+str(c+1), 1),
-           tiles.get(str(r+1)+","+str(c), 1), tiles.get(str(r+1)+","+str(c-1), 1)]
+    ans = [tiles.get(str(r-1)+","+str(c), 1), tiles.get(str(r-1)+","+str(c+1), 1), tiles.get(str(r)+","+str(c-1), 1),
+           tiles.get(str(r)+","+str(c+1), 1), tiles.get(str(r+1)+","+str(c), 1), tiles.get(str(r+1)+","+str(c-1), 1)]
     return len([x for x in ans if x is None])
 
 
