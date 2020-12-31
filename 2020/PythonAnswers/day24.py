@@ -11,23 +11,13 @@ def read_input(file_name):
 def day24pt1():
     all_tiles = {}
     input = [re.findall("(e|se|sw|nw|w|ne)", line) for line in read_input("day24.txt")]
+    dirs = {"e": (0, 1), "se": (1, 0), "sw": (1, -1), "nw": (-1, 0), "w": (0, -1), "ne": (-1, 1)}
     for line in input:
         row, col = 100, 100
         for dir in line:
-            if dir == "e":
-                col += 1
-            elif dir == "se":
-                row += 1
-            elif dir == "sw":
-                col -= 1
-                row += 1
-            elif dir == "nw":
-                row -= 1
-            elif dir == "w":
-                col -= 1
-            elif dir == "ne":
-                row -= 1
-                col += 1
+            row += dirs[dir][0]
+            col += dirs[dir][1]
+
         pos = str(row)+","+str(col)
         if pos in all_tiles:
             all_tiles.pop(pos)
@@ -39,7 +29,7 @@ def day24pt1():
 
 
 def day24pt2():
-    get_around = [(-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1, -1), (1, 0)]
+    get_around = [(-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1, -1)]
     on_tiles = day24pt1()
     for _ in range(100):
         all_tiles = {}
@@ -61,7 +51,7 @@ def day24pt2():
                     new_on_tiles[tile] = None
         on_tiles = copy.deepcopy(new_on_tiles)
 
-    print(len(on_tiles))
+    print("part two:", len(on_tiles))
 
 
 def get_neighbors(tiles, r, c):
