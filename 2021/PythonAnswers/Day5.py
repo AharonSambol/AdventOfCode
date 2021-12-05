@@ -13,7 +13,7 @@ def day5(part1):
                 continue
             xs, ys = inclusive_range(x1, x2), inclusive_range(y1, y2)
             ln = max(len(xs), len(ys))
-            xs.extend([x1] * (ln - len(xs)))
+            xs.extend([x1] * (ln - len(xs)))    # so that zip doesn't stop early
             ys.extend([y1] * (ln - len(ys)))
             for x, y in zip(xs, ys):
                 d[(x, y)] = d.get((x, y), 0) + 1
