@@ -1,6 +1,7 @@
 from collections import Counter
 
 
+# NOTE - referring to the submarines as ships cuz it's easier to spell
 def day7fast(is_part1):     # optimized solution
     input_ships = dict(Counter(input_data)).items()     # group together identical ships
     # distance -> abs(ship - ps)
