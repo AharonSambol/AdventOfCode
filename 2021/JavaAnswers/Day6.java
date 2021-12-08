@@ -14,8 +14,9 @@ public class Advent {
     public static long solution(long[] fish) {
         for (int day = 0; day < 256; day++) {
             var first = fish[0];
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 9; i++) {
                 fish[i] = fish[i+1] + ((i == 8 || i == 6)? first : 0L);
+            }
         }
         return Arrays.stream(fish).sum();
     }
