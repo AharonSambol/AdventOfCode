@@ -1,5 +1,3 @@
-import subprocess
-
 nums = {"abcefg": '0', "cf": '1', "acdeg": '2', "acdfg": '3', "bcdf": '4', "abdfg": '5', "abdefg": '6',
         "acf": '7', "abcdefg": '8', "abcdfg": '9'}
 
@@ -74,7 +72,5 @@ if __name__ == '__main__':
     print(smarter_solution())
     with open("day8") as input_file:
         ipt = [[v.split(' ') for v in x.strip().split(' | ')] for x in input_file.readlines()]
-        # solution = part1()
-        solution = part2()
-        print(solution)
-        subprocess.run("clip", universal_newlines=True, input=str(solution))
+        print(part1())
+        print(part2())
