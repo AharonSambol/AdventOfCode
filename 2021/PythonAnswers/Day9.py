@@ -1,7 +1,7 @@
 import math
 
 neighbors = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-in_range = lambda r, c: all(p in range(len(ipt)) for p in [r, c])
+in_range = lambda r, c: r in range(len(ipt)) and c in range(len(ipt[0]))
 is_bigger = lambda r, c, val: not in_range(r, c) or ipt[r][c] > val
 
 
