@@ -37,3 +37,7 @@ def day10(ipt):
 if __name__ == '__main__':
     with open("day11") as input_file:
         day10([[int(x) for x in line.strip()] for line in input_file.readlines()])
+        
+# idea for faster solution - have an array of len 10 which represents the energy of each octopus. 
+# then each day all you need to do is: arr.append(arr.pop(0)), [octopus.move(day) for octopus in arr[-1]]
+# move will move it to a -1 index in the array (and check if flashes) [won't affect octopuses in arr[-1]]
