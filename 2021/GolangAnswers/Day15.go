@@ -58,7 +58,7 @@ func makeBiggerMapPart2(original [][]node) [][]node {
 					for val > 9 {
 						val -= 9
 					}
-					newMap[len(original)*r+row][len(original[0])*c+col] = node{val, -1} // prob not great to be making so many objects
+					newMap[len(original)*r+row][len(original[0])*c+col] = node{val, -1}
 				}
 			}
 		}
