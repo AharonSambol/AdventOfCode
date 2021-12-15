@@ -25,7 +25,7 @@ func ReadFromFileNums(fileName string) []int {
 }
 
 func main() {
-	input := ReadFromFileNums("D:/Aharon/git/ajs-code/golang/pieces.text")
+	input := ReadFromFileNums("D:/Aharon/golang/day1.text")
 	//part 1
 	prev := input[0]
 	ans := 0
