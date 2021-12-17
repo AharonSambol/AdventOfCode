@@ -1,10 +1,6 @@
 import math
 
 
-def to_bin(st):
-    return list(''.join(bin(int(x, 16))[2:].zfill(4) for x in st))
-
-
 def decode_packet(packet):
     global total
     version, type_id = (int(''.join(x), 2) for x in [packet[:3], packet[3:6]])
@@ -31,7 +27,7 @@ def decode_packet(packet):
 
 
 if __name__ == '__main__':
-    total = 0
+    total, to_bin = 0, lambda st: list(''.join(bin(int(x, 16))[2:].zfill(4) for x in st))
     with open("day16") as input_file:
         part2 = decode_packet(to_bin(input_file.read()))
     print(f"part1: {total}\npart2: {part2}")
