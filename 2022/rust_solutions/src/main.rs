@@ -1,6 +1,8 @@
+#[allow(dead_code)]
+
 mod day01;
+mod day02;
 
 fn main() {
-    println!("{}", day01::part1());
-    println!("{}", day01::part2());
+    day02::solve();
 }

@@ -1,14 +1,15 @@
 use std::fs;
 
-pub fn part1() -> u32 {
+
+pub fn part1() {
     let data = fs::read_to_string("../Inputs/InputDay01.txt").expect("Unable to read file");
-    data.split("\n\n")
-        .map(|chunk| chunk.split('\n').map(|line| line.parse::<u32>().unwrap()).sum())
+    println!("{}", data.split("\n\n")
+        .map(|chunk| chunk.split('\n').map(|line| line.parse::<u32>().unwrap()).sum::<u32>())
         .max()
-        .unwrap()
+        .unwrap())
 }
 
-pub fn part2() -> u32 {
+pub fn part2() {
     let data = fs::read_to_string("../Inputs/InputDay01.txt").expect("Unable to read file");
     let mut mx = [0, 0, 0, 0];
     data.split("\n\n")
@@ -21,5 +22,5 @@ pub fn part2() -> u32 {
             }
             mx[i - 1] = elf;
         });
-    mx.iter().skip(1).sum()
+    println!("{}", mx.iter().skip(1).sum::<u32>())
 }
