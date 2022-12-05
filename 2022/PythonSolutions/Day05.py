@@ -3,7 +3,7 @@ import re
 part1 = True
 with open("../Inputs/InputDay05.txt") as file:
     start, moves = file.read().split('\n\n')
-    stacks = [[] for _ in range(int(start[-1]))]
+    stacks = [[] for _ in range(int(start.split()[-1]))]
     for line in start.split('\n'):
         for i in range(0, len(line), 4):
             if line[i] == '[':
