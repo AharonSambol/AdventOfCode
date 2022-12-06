@@ -3,8 +3,9 @@
 #[allow(dead_code)] mod day03;
 #[allow(dead_code)] mod day04;
 #[allow(dead_code)] mod day05;
+#[allow(dead_code)] mod day06;
 
 fn main() {
-    day05::part1();
-    day05::part2();
+    day06::part1();
+    day06::part2();
 }
