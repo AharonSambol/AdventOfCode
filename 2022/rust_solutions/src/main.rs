@@ -4,8 +4,8 @@
 #[allow(dead_code)] mod day04;
 #[allow(dead_code)] mod day05;
 #[allow(dead_code)] mod day06;
+#[allow(dead_code)] mod day07;
 
 fn main() {
-    day06::part1();
-    day06::part2();
+    day07::solve();
 }
