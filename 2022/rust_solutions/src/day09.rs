@@ -1,6 +1,5 @@
 use std::collections::HashSet;
 use std::fs;
-use itertools::enumerate;
 
 pub fn solve() {
     let data = fs::read_to_string("../Inputs/InputDay09.txt").expect("Unable to read file");
@@ -17,9 +16,9 @@ pub fn solve() {
             rope[0] = (rope[0].0 + dr.0, rope[0].1 + dr.1);
             for (k, knot) in rope.clone().iter().enumerate() {
                 if k == 0 { continue }
-                let diff: (i32, i32) = (rope[k-1].0 - knot.0, rope[k-1].1 - knot.1);
-                if diff.0.abs() > 1 || diff.1.abs() > 1 {
-                    let diff = [diff.0, diff.1].map(|x| x / x.abs().max(1));
+                let diff: [i32; 2] = [rope[k-1].0 - knot.0, rope[k-1].1 - knot.1];
+                if diff[0].abs() > 1 || diff[1].abs() > 1 {
+                    let diff = diff.map(|x| x / x.abs().max(1));
                     rope[k] = (knot.0 + diff[0], knot.1 + diff[1]);
                 }
             }
