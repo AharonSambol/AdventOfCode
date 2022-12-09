@@ -7,7 +7,7 @@ with open("../Inputs/InputDay09.txt") as file:
             rope[0] = rope[0][0] + dr[0], rope[0][1] + dr[1]
             for k, knot in enumerate(rope[1:], start=1):
                 diff = rope[k-1][0] - knot[0], rope[k-1][1] - knot[1]
-                if abs(diff[0]) > 1 or abs(diff[1]) > 1:
+                if any(abs(x) > 1 for x in diff):
                     diff = [x // max(1, abs(x)) for x in diff]
                     rope[k] = knot[0] + diff[0], knot[1] + diff[1]
             visited1.add(rope[1])
