@@ -17,17 +17,17 @@ class Cube:
         up_layer = bottom_layer = right_layer = left_layer = front_layer = back_layer =  None
         top, bottom = self.top, self.bottom
         if o_top.y < self.top.y:
-            up_layer = Cube(self.top, Pos(self.bottom.x, o_top.y + 1, self.bottom.z))
-            top = Pos(self.top.x, up_layer.bottom.y - 1, self.top.z) 
+            up_layer = Cube(self.top, Pos(self.bottom.dr, o_top.y + 1, self.bottom.z))
+            top = Pos(self.top.dr, up_layer.bottom.y - 1, self.top.z)
         if o_bottom.y > self.bottom.y:
-            bottom_layer = Cube(Pos(self.top.x, o_bottom.y - 1, self.top.z), self.bottom)
-            bottom = Pos(self.bottom.x, bottom_layer.top.y + 1, self.bottom.z)
-        if o_top.x < self.top.x:
-            right_layer = Cube(top, Pos(o_top.x + 1, bottom.y, bottom.z))
-            top = Pos(right_layer.bottom.x - 1, top.y, top.z)
-        if o_bottom.x > self.bottom.x:
-            left_layer = Cube(Pos(o_bottom.x - 1, top.y, top.z), bottom)
-            bottom = Pos(left_layer.top.x + 1, bottom.y, bottom.z)
+            bottom_layer = Cube(Pos(self.top.dr, o_bottom.y - 1, self.top.z), self.bottom)
+            bottom = Pos(self.bottom.dr, bottom_layer.top.y + 1, self.bottom.z)
+        if o_top.dr < self.top.dr:
+            right_layer = Cube(top, Pos(o_top.dr + 1, bottom.y, bottom.z))
+            top = Pos(right_layer.bottom.dr - 1, top.y, top.z)
+        if o_bottom.dr > self.bottom.dr:
+            left_layer = Cube(Pos(o_bottom.dr - 1, top.y, top.z), bottom)
+            bottom = Pos(left_layer.top.dr + 1, bottom.y, bottom.z)
         if o_top.z < self.top.z:
             front_layer = Cube(top, Pos(bottom.x, bottom.y, o_top.z + 1))
         if o_bottom.z > self.bottom.z:

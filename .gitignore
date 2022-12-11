@@ -1,3 +1,7 @@
 .history/
 venv
-*.txt
+2022/rust_solutions/target
+.idea
+2022/rust_solutions/rust_solutions.iml
+2022/PythonSolutions/ScrapeInput.py
+2022/PythonSolutions/.aoccache
