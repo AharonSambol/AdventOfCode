@@ -1,10 +1,11 @@
-from collections import namedtuple
+from collections import namedtuple, deque
+from multiprocessing import Pool
 
 
 Pos = namedtuple('Pos', 'r c count')
 def find_path(board, end, queue, visited):
     while queue:
-        pos = queue.pop(0)
+        pos = queue.popleft()
         for dr in ((0, 1), (0, -1), (1, 0), (-1, 0)):
             try:
                 new_pos = (pos.r + dr[0], pos.c + dr[1])
@@ -28,7 +29,8 @@ with open("../Inputs/InputDay12.txt") as file:
                 board[r][c], end = ord('z'), (r, c)
             elif val == ord('a'):
                 starts.append(Pos(r, c, 0))
-    print(find_path(board, end, [start], {(start.r, start.c)}))
-    print(min(find_path(board, end, [s], {(s.r, s.c)}) for s in starts))
+    print(find_path(board, end, deque([start]), {(start.r, start.c)}))
 
-
+    with Pool() as pool:
+        results = [pool.apply_async(find_path, (board, end, deque([s]), {(s.r, s.c)})) for s in starts]
+        print(min(p.get() for p in results))
