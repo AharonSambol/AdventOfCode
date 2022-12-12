@@ -9,7 +9,8 @@
 #[allow(dead_code)] mod day09;
 #[allow(dead_code)] mod day10;
 #[allow(dead_code)] mod day11;
+#[allow(dead_code)] mod day12;
 
 fn main() {
-    day11::solve();
+    day12::solve();
 }
