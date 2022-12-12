@@ -1,7 +1,7 @@
 use regex::Regex;
 use std::fs;
 
-const PART1: bool = true;
+const PART1: bool = false;
 
 pub fn solve() {
     let data = fs::read_to_string("../Inputs/InputDay11.txt").expect("Unable to read file");
@@ -37,7 +37,7 @@ pub fn solve() {
             business: 0,
         })
         .collect();
-    let prod = monkeys.iter().map(|x| x.test).reduce(|x, y| x * y).unwrap();
+    let prod = monkeys.iter().map(|x| x.test).product::<usize>();
     for _ in 0..(if PART1 { 20 } else { 10000 }) {
         let ln = monkeys.len();
         for i in 0..ln {
