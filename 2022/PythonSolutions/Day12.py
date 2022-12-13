@@ -34,3 +34,4 @@ with open("../Inputs/InputDay12.txt") as file:
     with Pool() as pool:
         results = [pool.apply_async(find_path, (board, end, deque([s]), {(s.r, s.c)})) for s in starts]
         print(min(p.get() for p in results))
+    print(int("dsg"))
