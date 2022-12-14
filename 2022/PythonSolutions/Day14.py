@@ -9,18 +9,18 @@ with open("../Inputs/InputDay14.txt") as file:
                 for y in range(min(y1, y2), max(y1, y2) + 1):
                     board.add((x, y))
     rocks, path = len(board), []
-    s = sand = (500, 0)
-    while not (part1 and s[1] + 1 > max_y):
-        path.append(s)
-        if s[1] < max_y + 1:
-            if (s := (s[0], s[1] + 1)) not in board:
+    sand = (500, 0)
+    while not (part1 and sand[1] + 1 > max_y):
+        path.append(sand)
+        if sand[1] < max_y + 1:
+            if (sand := (sand[0], sand[1] + 1)) not in board:
                 continue
-            if (s := (s[0] - 1, s[1])) not in board:
+            if (sand := (sand[0] - 1, sand[1])) not in board:
                 continue
-            if (s := (s[0] + 2, s[1])) not in board:
+            if (sand := (sand[0] + 2, sand[1])) not in board:
                 continue
         board.add(path[-1])
         if len(path) == 1:
             break
-        s, path = path[-2], path[:-2]
+        sand, path = path[-2], path[:-2]
     print(len(board) - rocks)

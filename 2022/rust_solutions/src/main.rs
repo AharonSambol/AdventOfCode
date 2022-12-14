@@ -11,7 +11,9 @@
 #[allow(dead_code)] mod day11;
 #[allow(dead_code)] mod day12;
 #[allow(dead_code)] mod day13;
+#[allow(dead_code)] mod day14;
 
 fn main() {
-    day13::solve();
+    day14::part1();
+    day14::part2();
 }
