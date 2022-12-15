@@ -1,6 +1,5 @@
 use std::collections::HashSet;
 use std::fs;
-use std::time::Instant;
 
 pub fn part1() {
     solve(true)
