@@ -2,7 +2,7 @@ import math
 import re
 
 
-def geodes(prices, cur_robots, resources, time, geodes_so_far, max_robots):
+def geodes(prices, cur_robots, resources, time, geodes_so_far, max_robots, cache):
     if all(cur_robots.get(elem, 0) >= amount for elem, amount in prices['geode'].items()):
         return sum(range(time - 1)) \
             + (time - 1 if all(resources[elem] >= amount for elem, amount in prices['geode'].items()) else 0)
@@ -13,7 +13,7 @@ def geodes(prices, cur_robots, resources, time, geodes_so_far, max_robots):
             if g >= geodes_so_far and t >= time and all(
                     rcs.get(mat, 0) >= min(
                         resources.get(mat, 0),
-                        time * (max_robots[mat] - cur_robots.get(mat, 0))
+                        (time - 1) * (max_robots[mat] - cur_robots.get(mat, 0))
                     ) for mat in ['ore', 'clay', 'obsidian', 'geode']
             ):
                 return -1
@@ -39,11 +39,11 @@ def geodes(prices, cur_robots, resources, time, geodes_so_far, max_robots):
 
             cur_robots[robot] = cur_robots.get(robot, 0) + 1
             res = new_time if robot == 'geode' else 0
-            res += geodes(prices, cur_robots, new_resources, new_time, geodes_so_far + res, max_robots)
+            res += geodes(prices, cur_robots, new_resources, new_time, geodes_so_far + res, max_robots, cache)
             cur_robots[robot] -= 1
-            mx = max(mx, res)
             if cur_robots[robot] == 0:
                 del cur_robots[robot]
+            mx = max(mx, res)
     return mx
 
 
@@ -59,19 +59,13 @@ def parse(line):
 
 def main():
     with open("../Inputs/InputDay19.txt") as file:
-        blueprints = [parse(line) for line in file.readlines()]
-        res = 0
-        for i, (prices, max_robots) in enumerate(blueprints, start=1):
-            cache.clear()
-            res += i * geodes(prices, {'ore': 1}, {}, 24, 0, max_robots)
-        print('part1:', res)
-        res = 1
-        for prices, max_robots in blueprints[:3]:
-            cache.clear()
-            res *= geodes(prices, {'ore': 1}, {}, 32, 0, max_robots)
-        print('part2:', res)
+        res1, res2 = 0, 1
+        for i, (prices, max_robots) in enumerate(map(parse, file), start=1):
+            res1 += i * geodes(prices, {'ore': 1}, {}, 24, 0, max_robots, {})
+            res2 *= geodes(prices, {'ore': 1}, {}, 32, 0, max_robots, {}) if i < 4 else 1
+        print('part1:', res1)
+        print('part2:', res2)
 
 
-cache = {}
 if __name__ == '__main__':
     main()
