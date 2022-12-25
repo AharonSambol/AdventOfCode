@@ -6,10 +6,12 @@ import re
 SIDE_SIZE = 50
 rotate_down = {'u': 'b', 'f': 'u', 'r': 'r', 'l': 'l', 'b': 'd', 'd': 'f'}
 rotate_left = {'u': 'u', 'd': 'd', 'r': 'b', 'b': 'l', 'l': 'f', 'f': 'r'}
+twist = {'f': 'f', 'b': 'b', 'u': 'r', 'l': 'u', 'd': 'l', 'r': 'd'}
 rotate_up    = {v: k for k, v in rotate_down.items()}
 rotate_right = {v: k for k, v in rotate_left.items()}
-rotation_maps = {'down': rotate_down, 'left': rotate_left, 'up': rotate_up, 'right': rotate_right}
-rotation_opposites = {'down': 'up', 'left': 'right', 'up': 'down', 'right': 'left'}
+twist_rev = {v: k for k, v in twist.items()}
+rotation_maps = {'down': rotate_down, 'left': rotate_left, 'up': rotate_up, 'right': rotate_right, 'twist': twist, 'twist_rev': twist_rev}
+rotation_opposites = {'down': 'up', 'left': 'right', 'up': 'down', 'right': 'left', 'twist': 'twist_rev', 'twist_rev': 'twist'}
 angle_to_change = {0: (0, 1), 90: (1, 0), 180: (0, -1), 270: (-1, 0)}
 
 
@@ -75,9 +77,8 @@ def move(board, pos, dr, instruction, cube, part1):
                 rotate_cube(cube, change)
                 reverse.append(rotation_opposites[change])
                 while new_cube['f'].top_bordering_with != 'u':
-                    for rotate in ('down', 'left', 'up'):   # rotate on other axis
-                        rotate_cube(new_cube, rotate)
-                        reverse.append(rotation_opposites[rotate])
+                    rotate_cube(new_cube, 'twist')
+                    reverse.append('twist_rev')
                     new_pos = (SIDE_SIZE - 1 - new_pos[1], new_pos[0])
                     new_dr = (new_dr - 90) % 360
             tile_pos = [x * SIDE_SIZE for x in new_cube['f'].pos]
