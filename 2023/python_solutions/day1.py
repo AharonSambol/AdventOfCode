@@ -7,7 +7,7 @@ def solution(numbers):
     with open("../inputs/day01.txt") as file:
         print(sum(
             numbers[x] * 10 + numbers[y]
-            for x, y in re.findall(rf'.*?(?={numbers_re}).*{numbers_re}.*?', file.read())
+            for x, y in re.findall(rf'(?={numbers_re}).*{numbers_re}', file.read())
         ))
 
 
