@@ -1,7 +1,4 @@
-class SetMock:
-    def __contains__(self, item):
-        return False
-
+class SetMock(set):
     def add(self, other):
         pass
 
@@ -15,8 +12,8 @@ def get_trail_score(
     for rd, cd in [[1, 0], [0, 1], [0, -1], [-1, 0]]:
         if (
             (r + rd, c + cd) not in visited
-            and r + rd in range(len(board))
-            and c + cd in range(len(board[0]))
+            and 0 <= r + rd < len(board)
+            and 0 <= c + cd < len(board[0])
             and board[r + rd][c + cd] == board[r][c] + 1
         ):
             visited.add((r + rd, c + cd))
