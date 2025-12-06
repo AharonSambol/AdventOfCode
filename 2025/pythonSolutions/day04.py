@@ -1,7 +1,9 @@
 from itertools import count, takewhile
 
-print("part1:", (lambda rows: sum(1 for r, row in enumerate(rows) for c, item in enumerate(row) if item == "@" and sum((r + x in range(len(rows)) and c + y in range(len(rows[0])) and rows[r + x][c + y] == "@") for x, y in [(0, 1), (0, -1), (1, 0), (1, 1), (1, -1), (-1, 0), (-1, 1), (-1, -1)]) < 4))([list(x) for x in open("inputs/day4.txt").read().split("\n")]))
-print("part2:", (lambda rows: sum(takewhile(lambda x: x, (sum(rows[r].__setitem__(c, '.') or 1 for r, row in enumerate(rows) for c, item in enumerate(row) if item == "@" and sum((r + x in range(len(rows)) and c + y in range(len(rows[0])) and rows[r + x][c + y] == "@") for x, y in[(0, 1), (0, -1), (1, 0), (1, 1), (1, -1), (-1, 0), (-1, 1), (-1, -1)]) < 4) for _ in count()))))([list(x) for x in open("inputs/day4.txt").read().split("\n")]))
+print("part1:", (lambda rows: sum(1 for r, row in enumerate(rows) for c, item in enumerate(row) if item == "@" and sum((r + x in range(len(rows)) and c + y in range(len(rows[0])) and rows[r + x][c + y] == "@") for x, y in [(0, 1), (0, -1), (1, 0), (1, 1), (1, -1), (-1, 0), (-1, 1), (-1, -1)]) < 4))([list(x) for x in open(
+    "inputs/day04.txt").read().split("\n")]))
+print("part2:", (lambda rows: sum(takewhile(lambda x: x, (sum(rows[r].__setitem__(c, '.') or 1 for r, row in enumerate(rows) for c, item in enumerate(row) if item == "@" and sum((r + x in range(len(rows)) and c + y in range(len(rows[0])) and rows[r + x][c + y] == "@") for x, y in[(0, 1), (0, -1), (1, 0), (1, 1), (1, -1), (-1, 0), (-1, 1), (-1, -1)]) < 4) for _ in count()))))([list(x) for x in open(
+    "inputs/day04.txt").read().split("\n")]))
 
 
 # --- CLEAN SOLUTION ---
@@ -26,7 +28,7 @@ def remove_rolls(rows: list[list[str]], remove: bool) -> int:
 
 
 def main():
-    with open("inputs/day4.txt") as f:
+    with open("inputs/day04.txt") as f:
         rows = [list(x) for x in f.read().split("\n")]
     print("part1:", remove_rolls(rows, False))
     res = 0

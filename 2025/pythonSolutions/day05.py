@@ -1,4 +1,4 @@
-with (open("inputs/day5.txt") as f):
+with (open("inputs/day05.txt") as f):
     ranges, ingredients = f.read().split("\n\n")
     print("part1:", sum(any(ingredient in range(*map(int, r.split("-"))) for r in ranges.split("\n")) for ingredient in (int(x) for x in ingredients.split("\n"))))
 
