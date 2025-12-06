@@ -1,6 +1,6 @@
 with (open("inputs/day05.txt") as f):
     ranges, ingredients = f.read().split("\n\n")
-    print("part1:", sum(any(ingredient in range(*map(int, r.split("-"))) for r in ranges.split("\n")) for ingredient in (int(x) for x in ingredients.split("\n"))))
+    print("part1:", sum(any(ingredient in range(*map(int, r.split("-"))) for r in ranges.split("\n")) for ingredient in map(int, ingredients.split("\n"))))
 
     ranges, filtered_ranges = [], [[int(x) for x in rng.split("-")] for rng in ranges.split("\n")]
     while len(ranges) != len(filtered_ranges):
