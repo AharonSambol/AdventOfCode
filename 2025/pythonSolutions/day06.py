@@ -1,15 +1,17 @@
 import re
 from math import prod
 
-print("part 1:", sum((sum if operator == "+" else prod)(map(int, nums)) for *nums, operator in zip(*[re.split(r"\s+", line.strip()) for line in open("inputs/day06.txt").read().split("\n")])))
+print("part 1:", sum({"+": sum, "*": prod}[operator](map(int, nums)) for *nums, operator in zip(*[re.split(r"\s+", line.strip()) for line in open("inputs/day06.txt").read().split("\n")])))
 
 # --- CLEAN SOLUTION ---
+OPERATIONS = {"+": sum, "*": prod}
+
 with open("inputs/day06.txt") as f:
     content = f.read().split("\n")
     lines = [re.split(r"\s+", line.strip()) for line in content]
     res = 0
     for *nums, operator in zip(*lines):
-        res += (sum if operator == "+" else prod)(map(int, nums))
+        res += OPERATIONS[operator](map(int, nums))
     print("part 1:", res)
 
     max_line_len = max(len(x) for x in content)
@@ -24,6 +26,6 @@ with open("inputs/day06.txt") as f:
             for i in range(start_index, start_index + len(operation))
             if (num := "".join(line[i] for line in num_lines)).strip()
         ]
-        res += sum(nums) if operation[0] == "+" else prod(nums)
+        res += OPERATIONS[operation[0]](nums)
         start_index += 1 + len(operation)
     print("part 2:", res)
