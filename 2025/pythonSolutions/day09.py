@@ -61,7 +61,7 @@ def part2(points: list[tuple[int, int]]) -> int:
             possible_rectangles[i] = (0, 0, 0)
 
 
-def main():
+def main() -> None:
     with open("inputs/day09.txt") as f:
         points = cast(
             list[tuple[int, int]],

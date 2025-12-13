@@ -1,6 +1,5 @@
 import itertools
 import string
-from functools import reduce
 from typing import Any
 
 from z3 import Int, Optimize
@@ -34,8 +33,8 @@ def solve_part2(equations: list[tuple[int, list[bool]]]) -> int:
     for var in variables:
         solver.add(var >= 0)
     for goal, equation in equations:
-        solver.add(int(goal) == reduce(lambda a, b: a + b, [x for x, m in zip(variables, equation) if m]))
-    solver.minimize(reduce(lambda a, b: a + b, variables))
+        solver.add(int(goal) == sum(x for x, m in zip(variables, equation) if m))
+    solver.minimize(sum(variables))
     solver.check()
     model = solver.model()
     return sum(int(model[var].as_long()) for var in variables)
